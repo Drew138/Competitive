@@ -8,37 +8,25 @@
 
 using namespace std;
 
+int valid(string s1, string s2, int ia1, int ia2, int ib, int longest)
+{
+    if (s1.size() - 1 == ia1)
+    {
+        return 0;
+    }
+    if (s1.size() - 2 > ia2 && s2.size() - 2 > ib && s1.at(ia2) == s2.at(ib))
+    {
+        valid(s1, s2, ia1, ia2++, ib++, longest++);
+    }
+    else if (s1.at(ia2) != s2.at(ib) && s1.size() - 1 > ia1)
+    {
+        longest = max(valid(s1, s2, ia1, ia1, ib, 0), valid(s1, s2, ia1++, ia1++, 0, 0));
+    }
+
+    return longest;
+}
+
 int main()
 {
-    int numStrings;
-    cin >> numStrings;
-    unordered_set<char> opening{'(', '[', '{'};
-    for (int i = 0; i < numStrings; ++i)
-    {
-        string brackets;
-        stack<char> bracketsStack;
-        cin >> brackets;
-        for (int j = 0; j < brackets.size(); ++j)
-        {
-            char character = brackets.at(j);
-            bool isAddStack = opening.find(character) != opening.end();
-            if (isAddStack)
-            {
-                bracketsStack.push(character);
-            }
-            else if (bracketsStack.top() == '[' && character == ']')
-            {
-                bracketsStack.pop();
-            }
-            else if (bracketsStack.top())
-            {
-            }
-            else if (bracketsStack.top())
-            {
-            }
-            else
-            {
-                return "NO";
-            }
-        }
-    }
+    cout << valid("abcdefg", "abcdxxxxabcdefg", 0, 0, 0, 0);
+}
