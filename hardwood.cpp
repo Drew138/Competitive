@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 
 #define D(x) cout << #x << " = " << x << endl;

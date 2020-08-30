@@ -9,29 +9,37 @@ using namespace std;
 
 void Contacts()
 {
-    set<string> names;
+    vector<string> names;
     int numOperations;
     cin >> numOperations;
-    while (--numOperations + 1)
+    while (numOperations--)
     {
         string operation, context;
         cin >> operation >> context;
 
         if (operation == "add")
         {
-            names.insert(context);
+            names.push_back(context);
         }
         else if (operation == "find")
         {
             int total = 0;
-            for (const string &name : names)
+            for (int x = 0; x < names.size(); ++x)
             {
                 int matches = 0;
-                if (context.size() <= name.size())
+                if (context.size() <= names[x].size())
                 {
                     for (int i = 0; i < context.size(); ++i)
                     {
-                        matches += context[i] == name[i];
+                        if (context[i] == names[x][i])
+                        {
+
+                            matches += context[i] == names[x][i];
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
                 if (matches == context.size())
