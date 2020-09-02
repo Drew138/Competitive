@@ -1,1 +1,0 @@
-totalLuck += luck
