@@ -4,7 +4,7 @@ manipArray = [0] * size
 for x in range(numOps):
     start, end, value = map(int, input().split())
     manipArray[start-1] += value
-    manipArray[end-1] += -value
+    manipArray[end] += -value
 
 currentVal = 0
 maxVal = 0
