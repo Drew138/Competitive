@@ -13,60 +13,36 @@ using namespace std;
 
 int main()
 {
-    int numRegions, numChildren;
+    ll numRegions, numChildren, regTemp, maxTemp, penalty, costBus, numBuses, minCase, maxCase, total = 0;
     cin >> numRegions >> numChildren;
-    for (int x = 0; x < numRegions; ++x)
+    while (numRegions--)
     {
-        }
-}
+        cin >> regTemp >> maxTemp >> penalty >> costBus;
 
-#include <bits/stdc++.h>
-
-#define D(x) cout << #x << " = " << x << endl;
-#define ios ios_base::sync_with_stdio(0), cin.tie(0);
-#define forn(i, n) for (int i = 0; i < (int)n; ++i)
-#define all(v) v.begin(), v.end()
-#define formap(map) for (const auto &[key, value] : map)
-#define ms(ar, val) memset(ar, val, sizeof ar)
-typedef long long ll;
-typedef long double ld;
-
-using namespace std;
-
-void problem()
-{
-    int n, m, t, T, x, cost, nbuses, mini, maxi, total = 0, temp; //t (°per region), T (max ° per bus), cost (cost per bus)
-    cin >> n >> m;
-    while (n--)
-    {
-        cin >> t >> T >> x >> cost;
-
-        if (T >= (t + m))
+        if (maxTemp >= (regTemp + numChildren))
         {
-            total = cost;
+            total += costBus;
         }
         else
         {
-            mini = cost + (m * x);
-
-            if (m % (T - t) > 0)
+            if (regTemp >= maxTemp)
             {
-                maxi = min(cost * ((m / (T - t)) + 1), cost * (m / (T - t)) + x * ((m % (T - t)) + (T - t))); //1 - todos
+                total += costBus + (numChildren * penalty);
             }
             else
             {
-                maxi = cost * ((m / (T - t)));
+                minCase = costBus + (numChildren * penalty);
+                if (numChildren % (maxTemp - regTemp))
+                {
+                    maxCase = min(costBus * ((numChildren / (maxTemp - regTemp)) + 1), costBus * (numChildren / (maxTemp - regTemp)) + penalty * ((numChildren % (maxTemp - regTemp)) + (maxTemp - regTemp)));
+                }
+                else
+                {
+                    maxCase = costBus * ((numChildren / (maxTemp - regTemp)));
+                }
+                total += min(maxCase, minCase);
             }
-
-            temp = min(maxi, mini);
         }
-
-        total += temp;
     }
     cout << total;
-}
-
-int main()
-{
-    problem();
 }
