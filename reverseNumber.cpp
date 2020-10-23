@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
-#define D(x) cout << #x < <
-< < x << endl;
+#define D(x) cout << #x << x << endl;
 #define ios ios_base::sync_with_stdio(0), cin.tie(0);
 #define forn(i, n) for (int i = 0; i < (int)n; ++i)
 #define all(v) v.begin(), v.end()
