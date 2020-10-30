@@ -1,3 +1,3 @@
 # competitive
 
-Files containing solutions for various competitive programming algorithms
+Files containing solutions for solutions to various data structures and algorithms problems
