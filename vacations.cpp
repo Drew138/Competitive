@@ -16,7 +16,6 @@ void vacations()
 
     int numDays;
     cin >> numDays;
-
     int days[numDays];
     cin >> days[0];
     int total = 0;
